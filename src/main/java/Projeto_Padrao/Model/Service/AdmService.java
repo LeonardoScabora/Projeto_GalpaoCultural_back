@@ -51,20 +51,24 @@ public class AdmService {
                 e.getNome(),
                 e.getLivro(),
                 e.getAutor(),
-                e.getCelular()
+                e.getCelular(),
+                e.getRetirada(),
+                e.getDevolucao()
         )).toList();
     }
 
-    public List<EmprestimosAtrasadosDTO> EmprestimosAtrasados() {
-        List<EmprestimosAtrasadosDTO> listaAtrasados = emprestimoRepository.findAll().stream()
+    public List<VisualizarEmpDTO> EmprestimosAtrasados() {
+        List<VisualizarEmpDTO> listaAtrasados = emprestimoRepository.findAll().stream()
                 .filter(e -> LocalDate.now().isAfter(e.getRetirada().plusMonths(1)))
                 .filter(e -> !e.isDevolvido())
-                .map(e -> new EmprestimosAtrasadosDTO(
+                .map(e -> new VisualizarEmpDTO(
                         e.getId(),
-                        e.getCelular(),
                         e.getNome(),
                         e.getLivro(),
-                        e.getAutor()
+                        e.getAutor(),
+                        e.getCelular(),
+                        e.getRetirada(),
+                        e.getDevolucao()
                 ))
                 .collect(Collectors.toList());
 
@@ -74,15 +78,17 @@ public class AdmService {
         return listaAtrasados;
     }
 
-    public List<EmprestimosAtrasadosDTO> EmprestimosPendentes() {
-        List<EmprestimosAtrasadosDTO> listaPendentes = emprestimoRepository.findAll().stream()
+    public List<VisualizarEmpDTO> EmprestimosPendentes() {
+        List<VisualizarEmpDTO> listaPendentes = emprestimoRepository.findAll().stream()
                 .filter(e -> !e.isDevolvido())
-                .map(e -> new EmprestimosAtrasadosDTO(
+                .map(e -> new VisualizarEmpDTO(
                         e.getId(),
-                        e.getCelular(),
                         e.getNome(),
                         e.getLivro(),
-                        e.getAutor()
+                        e.getAutor(),
+                        e.getCelular(),
+                        e.getRetirada(),
+                        e.getDevolucao()
                 ))
                 .collect(Collectors.toList());
 

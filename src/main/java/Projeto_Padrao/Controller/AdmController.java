@@ -30,12 +30,12 @@ public class AdmController {
     }
 
     @GetMapping(path = "/atrasados")
-    public ResponseEntity<List<EmprestimosAtrasadosDTO>> EmprestimosAtrasados(){
+    public ResponseEntity<List<VisualizarEmpDTO>> EmprestimosAtrasados(){
         return ResponseEntity.status(HttpStatus.OK).body(admService.EmprestimosAtrasados());
     }
 
     @GetMapping(path = "/pendentes")
-    public ResponseEntity<List<EmprestimosAtrasadosDTO>> EmprestimosPendentes(){
+    public ResponseEntity<List<VisualizarEmpDTO>> EmprestimosPendentes(){
         return ResponseEntity.status(HttpStatus.OK).body(admService.EmprestimosPendentes());
     }
 }

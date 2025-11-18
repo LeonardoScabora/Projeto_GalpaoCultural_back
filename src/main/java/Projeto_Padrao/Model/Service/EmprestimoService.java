@@ -35,7 +35,9 @@ public class EmprestimoService {
                         e.getNome(),
                         e.getLivro(),
                         e.getAutor(),
-                        e.getCelular()
+                        e.getCelular(),
+                        e.getRetirada(),
+                        e.getDevolucao()
                 )).toList();
     }
 
