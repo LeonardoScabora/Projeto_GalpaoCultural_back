@@ -4,5 +4,6 @@ public record VisualizarEmpDTO(
         Long id,
         String nome,
         String livro,
-        String autor
+        String autor,
+        String celular
 ) {}

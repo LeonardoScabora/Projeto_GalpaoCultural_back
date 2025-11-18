@@ -3,8 +3,10 @@ package Projeto_Padrao.Controller;
 import Projeto_Padrao.Model.Dto.Autenticacao.CreateUserDto;
 import Projeto_Padrao.Model.Dto.Autenticacao.LoginUserDto;
 import Projeto_Padrao.Model.Dto.Autenticacao.RecoveryJwtTokenDto;
+import Projeto_Padrao.Model.Dto.EmprestimoDTO;
 import Projeto_Padrao.Model.Dto.EmprestimosAtrasadosDTO;
 import Projeto_Padrao.Model.Dto.VisualizarEmpDTO;
+import Projeto_Padrao.Model.Entidade.Emprestimo;
 import Projeto_Padrao.Model.Service.AdmService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +34,8 @@ public class AdmController {
         return ResponseEntity.status(HttpStatus.OK).body(admService.EmprestimosAtrasados());
     }
 
-
+    @GetMapping(path = "/pendentes")
+    public ResponseEntity<List<EmprestimosAtrasadosDTO>> EmprestimosPendentes(){
+        return ResponseEntity.status(HttpStatus.OK).body(admService.EmprestimosPendentes());
+    }
 }

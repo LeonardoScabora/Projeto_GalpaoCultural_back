@@ -1,6 +1,7 @@
 package Projeto_Padrao.Model.Service;
 
 
+import Projeto_Padrao.Model.Dto.EmprestimoDTO;
 import Projeto_Padrao.Model.Dto.EmprestimosAtrasadosDTO;
 import Projeto_Padrao.Model.Dto.VisualizarEmpDTO;
 import Projeto_Padrao.Model.Entidade.Administrador;
@@ -49,7 +50,8 @@ public class AdmService {
                 e.getId(),
                 e.getNome(),
                 e.getLivro(),
-                e.getAutor()
+                e.getAutor(),
+                e.getCelular()
         )).toList();
     }
 
@@ -72,6 +74,21 @@ public class AdmService {
         return listaAtrasados;
     }
 
+    public List<EmprestimosAtrasadosDTO> EmprestimosPendentes() {
+        List<EmprestimosAtrasadosDTO> listaPendentes = emprestimoRepository.findAll().stream()
+                .filter(e -> !e.isDevolvido())
+                .map(e -> new EmprestimosAtrasadosDTO(
+                        e.getId(),
+                        e.getCelular(),
+                        e.getNome(),
+                        e.getLivro(),
+                        e.getAutor()
+                ))
+                .collect(Collectors.toList());
 
-
+        if (listaPendentes.isEmpty()) {
+            throw new DataNotFoundException("NÃO EXISTEM EMPRESTIMOS PENDENTES!");
+        }
+        return listaPendentes;
+    }
 }

@@ -35,7 +35,8 @@ public class SecurityConfiguration {
     public static final String[] ENDPOINTS_WITH_AUTHENTICATION_REQUIRED = {
             "/auth/test",
             "/adm/todosEmprestimos",
-            "/adm/atrasados"
+            "/adm/atrasados",
+            "/adm/pendentes"
     };
 
     @Bean
